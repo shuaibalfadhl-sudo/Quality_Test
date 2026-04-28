@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function Footer(){
   const year = new Date().getFullYear()
 
@@ -5,7 +7,7 @@ export default function Footer(){
     <footer className="site-footer">
       <div className="container footer-inner">
         <div className="footer-col footer-left">
-          <img src="/logo.svg" alt="IndustrialSys" className="footer-logo" />
+          <Image src="/logo.svg" alt="IndustrialSys" className="footer-logo" width={120} height={36} priority />
           <div className="copyright">© {year} IndustrialSys</div>
         </div>
 

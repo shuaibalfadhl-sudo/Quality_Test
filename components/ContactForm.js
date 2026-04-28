@@ -42,7 +42,7 @@ export default function ContactForm() {
               </button>
             </div>
 
-            {status === 'sent' && <div className="success">Thanks — we'll be in touch shortly.</div>}
+            {status === 'sent' && <div className="success">Thanks — we will be in touch shortly.</div>}
           </form>
         </div>
       </div>
