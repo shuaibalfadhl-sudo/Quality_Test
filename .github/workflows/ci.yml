@@ -43,3 +43,24 @@ jobs:
           DIRECTUS_STATIC_TOKEN: placeholder
           DIRECTUS_TOKEN: placeholder
           NEXT_PUBLIC_DIRECTUS_STATIC_TOKEN: placeholder
+      - name: Auto-close PR on failure
+        if: ${{ failure() && github.event_name == 'pull_request' }}
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pr = context.payload.pull_request;
+            if (pr) {
+              await github.rest.pulls.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                state: 'closed'
+              });
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                body: "Auto-closing PR because the build or lint checks failed. Please fix the errors and reopen."
+              });
+            }
