@@ -8,7 +8,7 @@ export default function Features() {
   return (
     <section id="features" className="features">
       <div className="container">
-        <h2>Key Capabilities</h2>
+        <h2>Key Capabilities</h2
         <div className="grid">
           {items.map((it) => (
             <div key={it.title} className="card">
